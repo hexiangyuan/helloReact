@@ -31,7 +31,7 @@ class helloReact extends Component {
 
     fetchData() {
         fetch(REQUEST_URL, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ class helloReact extends Component {
             <ListView
                 dataSource={this.state.dataSource}
                 renderRow={this.renderMovie}
-                style={styles.listView}
+                contentContainerStyle={styles.listView}
             />
         );
     }
@@ -76,16 +76,16 @@ class helloReact extends Component {
         );
     }
 
-    renderMovie(movie) {
+    renderMovie(item) {
         return (
-            <View style={styles.container}>
+            <View style={styles.container_}>
                 <Image
-                    source={{uri: movie.picture}}
-                    style={styles.thumbnail}
+                    source={{uri: item.picture}}
+                    style={styles.thumbnail_}
                 />
                 <View style={styles.rightContainer}>
-                    <Text style={styles.title}>{movie.name}</Text>
-                    <Text style={styles.year}>{movie.price}</Text>
+                    <Text style={styles.title_}>{item.name}</Text>
+                    <Text style={styles.year_}>{item.price}</Text>
                 </View>
             </View>
         );
@@ -101,6 +101,7 @@ var styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     },
     rightContainer: {
+        width:200,
         flex: 1,
     },
     title: {
@@ -116,8 +117,24 @@ var styles = StyleSheet.create({
         height: 81,
     },
     listView: {
+        flexDirection:'row',
+        flexWrap:'wrap',
         paddingTop: 20,
         backgroundColor: '#F5FCFF',
+    },
+
+    container_: {
+      padding:8, flexDirection: 'column', justifyContent: 'center', backgroundColor: '#F5fcff',width:180,
+    },
+    title_: {
+        fontSize: 12, marginTop: 8, color: 'black', textAlign: 'left',
+    },
+    price_: {
+        fontSize: 16, marginTop: 8, color: 'blue', textAlign: 'left',
+    },
+    thumbnail_: {
+        width: 180,
+        height:360,
     },
 });
 
